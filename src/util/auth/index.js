@@ -1,6 +1,6 @@
 import Auth from '../../aws-exports';
-import {signInSuccess} from './success'
-import  {signInError} from './error'
+import {signInSuccess,forgotPasswordSuccess} from './success'
+import  {signInError,forgotPasswordError} from './error'
 
 export const authenticateAsync = (values) => {
 
@@ -12,3 +12,16 @@ export const authenticateAsync = (values) => {
         signInError(error)
     })
 }
+
+
+export const forgotPasswordAsync = (values) => {
+
+    console.log(values)
+
+    return Auth.forgotPassword(values.email).then((response) => {
+        forgotPasswordSuccess(response)
+    }).catch((error) => {
+        forgotPasswordError(error)
+    })
+}
+

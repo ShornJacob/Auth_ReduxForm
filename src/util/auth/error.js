@@ -7,7 +7,7 @@ const throwError = (error) => {
             code: error.code,
             message: error.message
         }
-    } 
+    }
 
     throw new SubmissionError(errorObject)
 }
@@ -16,6 +16,14 @@ const throwError = (error) => {
 export const signInError = (error) => {
 
     console.log("signInError")
+
+    throwError(error)
+
+}
+
+export const forgotPasswordError = (error) => {
+
+    console.log("forgotPasswordError")
 
     throwError(error)
 
