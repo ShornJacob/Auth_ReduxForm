@@ -6,20 +6,33 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import AlertMessage from '../AlertMessage'
 import PropTypes from 'prop-types'
-import { emailFormat, required } from '../../util/auth/validations'
+import { emailFormat, required, passwordRequirement, confirmPassword } from '../../util/auth/validations'
 
 
-//https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html
+
 
 //Dealing with Errors
 
 const Message = ({ code, message }) => {
+
+    
 
     console.log(code)
     //console.log(message)
 
     switch (code) {
 
+        case "UsernameExistsException":
+        return  (
+          <div>
+            <br /> 
+            <AlertMessage variant="danger" message={message}/>
+
+            <Alert variant="danger">
+              Click{''}
+              <Alert.Link href="/forgotpassword"> here </Alert.Link> if you forgot your password.
+        </Alert>
+          </div>)
 
         default:
             return (
@@ -34,8 +47,8 @@ const SuccessMessage = () => (
     <div>
         <br />
         <Alert variant="info">
-           Code Resend  /{''}
-            <Alert.Link href="/signin"> here </Alert.Link></Alert>
+            A confirmation code has been sent to the Email . Please confirm code at /{''}
+            <Alert.Link href="/ForgotPasswordSubmit"> here </Alert.Link></Alert>
     </div>
 )
 
@@ -52,14 +65,14 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 }
 
 
-let forgotPasswordForm = props => {
+let signUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting , submitSucceeded} = props
+    const { error, pristine, handleSubmit, submitting, submitSucceeded } = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant="primary">Resend Signup Code</Alert>
+            <Alert variant="primary">Sign Up for a new account</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -71,6 +84,23 @@ let forgotPasswordForm = props => {
                         validate={[required, emailFormat]} />
                 </Form.Group>
 
+                <Form.Group>
+                    <Field name="password"
+                        component={renderTextInput}
+                        label="Password"
+                        type="password"
+                        placeholder="Password"
+                        validate={[required, passwordRequirement]} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Field name="password2"
+                        component={renderTextInput}
+                        label="Confirm Password"
+                        type="password"
+                        placeholder="Password"
+                        validate={[required, confirmPassword]} />
+                </Form.Group>
 
                 <Button type="submit" disabled={pristine || submitting}>Sign Up</Button>
 
@@ -86,10 +116,10 @@ let forgotPasswordForm = props => {
     )
 }
 
-forgotPasswordForm.propTypes = {
+signUpForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
 }
 
 export default reduxForm({
-    form: 'forgotPassword'
-})(forgotPasswordForm)
+    form: 'signUp'
+})(signUpForm)

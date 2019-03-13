@@ -20,6 +20,17 @@ const Message = ({ code, message }) => {
 
     switch (code) {
 
+        case 'ExpiredCodeException':
+        return  (
+            <div>
+              <br />
+              <Alert variant="danger">
+               Code has Expired . Resend code{''}
+                <Alert.Link href="/resendsignup"> here. </Alert.Link>
+          </Alert>
+    
+              <AlertMessage variant="danger" message={message}/>
+            </div>)
 
         default:
             return (
@@ -34,7 +45,7 @@ const SuccessMessage = () => (
     <div>
         <br />
         <Alert variant="info">
-           Code Resend  /{''}
+           Email Confirmed. Please Sign in  {''}
             <Alert.Link href="/signin"> here </Alert.Link></Alert>
     </div>
 )
@@ -52,14 +63,14 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 }
 
 
-let forgotPasswordForm = props => {
+let confirmSignUpForm = props => {
 
     const { error, pristine, handleSubmit, submitting , submitSucceeded} = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant="primary">Resend Signup Code</Alert>
+            <Alert variant="primary">Confirm Verification Code for Sign Up.</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -71,6 +82,16 @@ let forgotPasswordForm = props => {
                         validate={[required, emailFormat]} />
                 </Form.Group>
 
+
+
+                <Form.Group>
+                    <Field name="code"
+                        component={renderTextInput}
+                        label="Code"
+                        type="number"
+                        placeholder="Code"
+                        validate={[required]} />
+                </Form.Group>
 
                 <Button type="submit" disabled={pristine || submitting}>Sign Up</Button>
 
@@ -86,10 +107,10 @@ let forgotPasswordForm = props => {
     )
 }
 
-forgotPasswordForm.propTypes = {
+confirmSignUpForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
 }
 
 export default reduxForm({
-    form: 'forgotPassword'
-})(forgotPasswordForm)
+    form: 'confirmSignUp'
+})(confirmSignUpForm)

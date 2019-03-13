@@ -22,7 +22,7 @@ const Message = ({ code, message }) => {
           <br />
           <Alert variant="danger">
             An email with Confirmation has been sent to the email . Please{''}
-            <Alert.Link href="/confirmsignup"> confirm </Alert.Link> user.
+            <Alert.Link href="/confirmsignup"> confirm </Alert.Link> user first.
       </Alert>
 
           <AlertMessage variant="danger" message={message}/>

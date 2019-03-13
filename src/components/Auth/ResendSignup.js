@@ -34,8 +34,8 @@ const SuccessMessage = () => (
     <div>
         <br />
         <Alert variant="info">
-           Code Resend  /{''}
-            <Alert.Link href="/signin"> here </Alert.Link></Alert>
+           Code Resend. Confirm Email {''}
+            <Alert.Link href="/confirmsignup"> here. </Alert.Link></Alert>
     </div>
 )
 
@@ -52,14 +52,14 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 }
 
 
-let forgotPasswordForm = props => {
+let resendSignUpForm = props => {
 
     const { error, pristine, handleSubmit, submitting , submitSucceeded} = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant="primary">Resend Signup Code</Alert>
+            <Alert variant="primary">Resend SignUp Code</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -86,10 +86,10 @@ let forgotPasswordForm = props => {
     )
 }
 
-forgotPasswordForm.propTypes = {
+resendSignUpForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
 }
 
 export default reduxForm({
-    form: 'forgotPassword'
-})(forgotPasswordForm)
+    form: 'resendSignUp'
+})(resendSignUpForm)
