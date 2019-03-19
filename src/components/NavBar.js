@@ -3,18 +3,21 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 
 
-export default function NavBar({ auth }) {
+export default function NavBar({authenticated,authenticating,email}) {
 
-    //console.log(auth)
+    // console.log(authenticated)
+    // console.log(authenticating)
+    // console.log(email)
+
 
     const navsWhenNotAuthenticated =       (<Nav>
         <Nav.Link href="/signin">Sign In</Nav.Link>
-        <Nav.Link href="/signin">Sign Up</Nav.Link>
+        <Nav.Link href="/signup">Sign Up</Nav.Link>
 </Nav>)
     
     const navsWhenAuthenticated =  (<Nav>
         <Navbar.Text>
-            Signed In
+            {email}
         </Navbar.Text>
     </Nav>)
     
@@ -35,7 +38,7 @@ export default function NavBar({ auth }) {
           
           </Nav>
 
-          {auth.AUTHENTICATED ? navsWhenAuthenticated : navsWhenNotAuthenticated}
+          {authenticated ? navsWhenAuthenticated : navsWhenNotAuthenticated}
         </Navbar.Collapse>
       </Navbar>
 

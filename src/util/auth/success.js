@@ -6,13 +6,13 @@ export const signInSuccess = (response) => {
 
     console.log("signInSuccess")
 
-    console.log(response)
+    //console.log(response)
 
     const { jwtToken,payload } = response.signInUserSession.idToken
 
-    const {auth_time,email} = payload
+    const {email} = payload
 
-    console.log(jwtToken,auth_time,email)
+    //console.log(jwtToken,auth_time,email)
 
     store.dispatch(authenticate(email,jwtToken))
 

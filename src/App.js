@@ -4,6 +4,8 @@ import {connectedRoutedApp as RoutedApp} from './containers/AuthContainer'
 
 
 export default () => {
+
+  //console.log("App")
     return (
       <div>
               <NavBar/>

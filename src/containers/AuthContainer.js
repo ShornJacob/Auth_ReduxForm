@@ -4,7 +4,9 @@ import RoutedApp from '../components/Auth/RoutedApp'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
-    auth : state
+    authenticated : state.auth.AUTHENTICATED,
+    authenticating : state.auth.AUTHENTICATING,
+    email : state.auth.email
 })
 
 const connectedNavBar =  connect(mapStateToProps)(NavBar)
