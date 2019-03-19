@@ -29,7 +29,7 @@ export default ({ authenticated, authenticating, email }) => {
   // console.log(authenticating)
   // console.log(email)
 
-
+ // [  'primary',  'secondary',  'success',  'danger',  'warning',  'info',  'light',  'dark',  ]
   const bootstrapVariant = "secondary"
 
   const routesWhenNotAuthenticated = (
