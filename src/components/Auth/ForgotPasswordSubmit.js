@@ -48,14 +48,14 @@ const renderTextInput = ({ input, label, type, placeholder }) => {
 
 let forgotPasswordForm = props => {
 
-    const { error, handleSubmit, pristine, submitting, submitSucceeded } = props
+    const { error, handleSubmit, pristine, submitting, submitSucceeded , variant} = props
 
     //console.log(error)
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant="primary">Confirm email with a code</Alert>
+            <Alert variant={variant}>Confirm email with a code</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -67,7 +67,7 @@ let forgotPasswordForm = props => {
                     <Field name="code" component={renderTextInput} label="Code" type="number" placeholder="Code" />
                 </Form.Group>
 
-                <Button type="submit" disabled={pristine || submitting}>Forgot Password</Button>
+                <Button variant={variant} type="submit" disabled={pristine || submitting}>Forgot Password</Button>
 
 
             </Form>

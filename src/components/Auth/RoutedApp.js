@@ -30,13 +30,15 @@ export default ({ authenticated, authenticating, email }) => {
   // console.log(email)
 
 
+  const bootstrapVariant = "secondary"
+
   const routesWhenNotAuthenticated = (
     <Switch>
-      <Route exact path='/signup' render={() => <SignUp onSubmit={signUpAsync} />} />
+      <Route exact path='/signup' render={() => <SignUp onSubmit={signUpAsync} variant={bootstrapVariant}/>} />
       <Route exact path='/confirmsignup' render={() => <ConfirmSignUp onSubmit={confirmSignUpAsync} />} />
       <Route exact path='/resendsignup' render={() => <ResendSignup onSubmit={resendSignUpAsync} />} />
 
-      <Route exact path='/signin' render={() => <SignIn onSubmit={signInAsync} />} />
+      <Route exact path='/signin' render={() => <SignIn onSubmit={signInAsync} variant={bootstrapVariant} />} />
 
       <Route exact path='/forgotpassword' render={() => <ForgotPassword onSubmit={forgotPasswordAsync} />} />
       <Route exact path='/forgotpasswordsubmit' render={() => <ForgotPasswordSubmit onSubmit={forgotPasswordSubmitAsync} />} />

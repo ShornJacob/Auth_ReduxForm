@@ -63,12 +63,12 @@ const renderTextInput = ({ input, label, type, placeholder }) => {
 
 let signInForm = props => {
 
-  const { error, handleSubmit, pristine, submitting } = props
+  const { error, handleSubmit, pristine, submitting, variant } = props
 
   return (
     <Container className="justify-content-md-center">
 
-      <Alert variant="primary">Sign in here if you already have an account</Alert>
+      <Alert variant={variant}>Sign in here if you already have an account</Alert>
 
       <Form onSubmit={handleSubmit}>
         <Form.Group>
@@ -79,7 +79,7 @@ let signInForm = props => {
           <Field name="password" component={renderTextInput} label="Password" type="password" placeholder="Password" />
         </Form.Group>
 
-        <Button type="submit" disabled={pristine || submitting}>Sign In</Button>
+        <Button type="submit" variant={variant} disabled={pristine || submitting}>Sign In</Button>
 
       </Form>
 

@@ -65,12 +65,12 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 
 let confirmSignUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting , submitSucceeded} = props
+    const { error, pristine, handleSubmit, submitting , submitSucceeded, variant} = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant="primary">Confirm Verification Code for Sign Up.</Alert>
+            <Alert variant={variant}>Confirm Verification Code for Sign Up.</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -93,7 +93,7 @@ let confirmSignUpForm = props => {
                         validate={[required]} />
                 </Form.Group>
 
-                <Button type="submit" disabled={pristine || submitting}>Sign Up</Button>
+                <Button variant={variant} type="submit" disabled={pristine || submitting}>Sign Up</Button>
 
             </Form>
 

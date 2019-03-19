@@ -54,7 +54,7 @@ const SuccessMessage = () => (
 
 
 //for rendering Input
-const renderTextInput = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => {
+const renderTextInput = ({ input, label, type, placeholder ,meta: { touched, error, warning } }) => {
     return (
         <div>
             <Form.Label>{label}</Form.Label>
@@ -67,12 +67,12 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 
 let signUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting, submitSucceeded } = props
+    const { error, pristine, handleSubmit, submitting, submitSucceeded,  variant } = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant="primary">Sign Up for a new account</Alert>
+            <Alert variant={variant}>Sign Up for a new account</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -102,7 +102,7 @@ let signUpForm = props => {
                         validate={[required, confirmPassword]} />
                 </Form.Group>
 
-                <Button type="submit" disabled={pristine || submitting}>Sign Up</Button>
+                <Button variant={variant} type="submit" disabled={pristine || submitting}>Sign Up</Button>
 
             </Form>
 
