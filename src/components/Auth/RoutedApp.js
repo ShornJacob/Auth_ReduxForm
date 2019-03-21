@@ -50,6 +50,7 @@ export default ({ authenticated, authenticating, email }) => {
     <Switch>
       <Route exact path='/anapp' component={AnApp} />
       <Route exact path="/signin" render={() => (<Redirect to="/anapp" />)} />
+      <Route exact path="/signout" render={() => (<Redirect to="/anapp" />)} />
     </Switch>
   )
 

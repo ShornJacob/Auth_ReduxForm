@@ -1,4 +1,4 @@
-export const authenticate = (email,token) => {
+export const loginSuccess = (email,token) => {
     return {
         type : 'LOGIN_SUCCESS',
         payload : {
@@ -7,3 +7,6 @@ export const authenticate = (email,token) => {
         }
     }
 }
+
+export const logoutSuccess = () => ({type : 'LOGOUT_SUCCESS'})
+   

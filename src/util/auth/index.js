@@ -1,8 +1,10 @@
 import Auth from '../../aws-exports';
 import {signUpSuccess, confirmSignUpSuccess,resendSignUpSuccess,
-        signInSuccess,forgotPasswordSuccess, forgotPasswordSubmitSuccess} from './success'
+        signInSuccess,forgotPasswordSuccess, forgotPasswordSubmitSuccess,
+        signOutSuccess } from './success'
 import  {signUpError, confirmSignUpError,resendSignUpError,
-         signInError,forgotPasswordError, forgotPasswordSubmitError} from './error'
+         signInError,forgotPasswordError, forgotPasswordSubmitError,
+         signOutError} from './error'
 
 //for registering new user
 export const signUpAsync = (values) => {
@@ -74,3 +76,13 @@ export const forgotPasswordSubmitAsync = (values) => {
     })
 }
 
+export const signOutAsync = () => {
+
+    //console.log(values)
+
+    return Auth.signOut().then((response) => {
+        signOutSuccess(response)
+    }).catch((error) => {
+        signOutError(error)
+    })
+}

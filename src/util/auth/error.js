@@ -61,3 +61,9 @@ export const forgotPasswordSubmitError = (error) => {
     throwError(error)
 
 }
+
+export const signOutError= (response) => {
+
+    console.log("signOutError")
+
+}

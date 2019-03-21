@@ -4,6 +4,9 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
 
+import {signOutAsync} from '../util/auth'
+
+
 export default function NavBar({ authenticated, authenticating, email }) {
 
     // console.log(authenticated)
@@ -19,7 +22,7 @@ export default function NavBar({ authenticated, authenticating, email }) {
 
     const navsWhenAuthenticated = (
         <NavDropdown title={email} id="basic-nav-dropdown">
-            <NavDropdown.Item href="/signout">Sign Out</NavDropdown.Item>
+            <Nav.Link to={'/signout'} onClick={ () => signOutAsync() }>Sign Out</Nav.Link>
         </NavDropdown>
 )
 

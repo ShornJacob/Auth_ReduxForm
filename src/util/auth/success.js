@@ -1,5 +1,5 @@
 import store from '../../reducers'
-import {authenticate} from '../../actions'
+import {loginSuccess,logoutSuccess} from '../../actions'
 
 
 export const signInSuccess = (response) => {
@@ -14,7 +14,7 @@ export const signInSuccess = (response) => {
 
     //console.log(jwtToken,auth_time,email)
 
-    store.dispatch(authenticate(email,jwtToken))
+    store.dispatch(loginSuccess(email,jwtToken))
 
 }
 
@@ -57,5 +57,15 @@ export const forgotPasswordSubmitSuccess = (response) => {
     console.log("forgotPasswordSuccess")
 
 }
+
+
+export const signOutSuccess = (response) => {
+
+    console.log("signOutSuccess")
+
+    store.dispatch(logoutSuccess())
+
+}
+
 
 
