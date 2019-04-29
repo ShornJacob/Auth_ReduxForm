@@ -16,6 +16,7 @@ import  {signUpError, confirmSignUpError,resendSignUpError,
 //https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/index.html#Usage_and_Getting_Started
 //For browser-based web, mobile and hybrid apps, you can use AWS Amplify Library which extends the AWS SDK and provides an easier and declarative interface
 
+//config requires userPoolId and userPoolWebClientId
 Auth.configure(awsExports)
 //for registering new user
 export const signUpAsync = (values) => {
