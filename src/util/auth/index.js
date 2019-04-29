@@ -1,4 +1,5 @@
-import Auth from '../../aws-exports';
+import Auth from '@aws-amplify/auth'
+import awsExports from '../../aws-exports'
 import {signUpSuccess, confirmSignUpSuccess,resendSignUpSuccess,
         signInSuccess,forgotPasswordSuccess, forgotPasswordSubmitSuccess,
         signOutSuccess } from './success'
@@ -6,6 +7,7 @@ import  {signUpError, confirmSignUpError,resendSignUpError,
          signInError,forgotPasswordError, forgotPasswordSubmitError,
          signOutError} from './error'
 
+Auth.configure(awsExports)
 //for registering new user
 export const signUpAsync = (values) => {
 
