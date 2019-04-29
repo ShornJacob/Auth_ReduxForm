@@ -7,6 +7,15 @@ import  {signUpError, confirmSignUpError,resendSignUpError,
          signInError,forgotPasswordError, forgotPasswordSubmitError,
          signOutError} from './error'
 
+//aws-amplify is decalrative
+//https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-aws-amplify-a-declarative-javascript-library-for-cloud-development-with-mobile-or-web-applications/
+//https://aws-amplify.github.io/amplify-js/api/
+//https://github.com/aws-amplify/amplify-js/wiki
+
+//difference with aws sdk
+//https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/index.html#Usage_and_Getting_Started
+//For browser-based web, mobile and hybrid apps, you can use AWS Amplify Library which extends the AWS SDK and provides an easier and declarative interface
+
 Auth.configure(awsExports)
 //for registering new user
 export const signUpAsync = (values) => {
