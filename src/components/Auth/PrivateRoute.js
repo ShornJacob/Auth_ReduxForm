@@ -13,18 +13,17 @@ function PrivateRoute({ component: Component, ...rest }) {
     console.log(rest)
 
 
+
     const fakeAuth = false;
     return (
       <Route
+      //  JSX Spread sttributes
         {...rest}
-        render={props =>  fakeAuth ? (
-            <Component {...props} />
+        render={() =>  fakeAuth ? (
+            <Component />
           ) : (
             <Redirect
-              to={{
-                pathname: "/login",
-                state: { from: props.location }
-              }}
+              to={{pathname: "/login" }}
             />
           )
         }

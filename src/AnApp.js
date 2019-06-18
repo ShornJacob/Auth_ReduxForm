@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function AnApp() {
+export default function AnApp({props}) {
 
   return (
     <div>
