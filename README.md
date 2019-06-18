@@ -22,3 +22,5 @@ https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-aws-amplify-a-dec
 https://github.com/aws-amplify/amplify-js
 https://github.com/aws-amplify/amplify-js/wiki
 
+Private -Route Redirect implemented
+
