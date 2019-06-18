@@ -15,6 +15,9 @@ import SignIn from './SignIn'
 
 //others
 import AnApp from '../../AnApp'
+import Login from '../../login'
+
+import PrivateRoute from './PrivateRoute'
 
 //functions 
 import {
@@ -32,32 +35,43 @@ export default ({ authenticated, authenticating, email }) => {
  // [  'primary',  'secondary',  'success',  'danger',  'warning',  'info',  'light',  'dark',  ]
   const bootstrapVariant = "secondary"
 
-  const routesWhenNotAuthenticated = (
-    <Switch>
-      <Route exact path='/signup' render={() => <SignUp onSubmit={signUpAsync} variant={bootstrapVariant}/>} />
-      <Route exact path='/confirmsignup' render={() => <ConfirmSignUp onSubmit={confirmSignUpAsync} />} />
-      <Route exact path='/resendsignup' render={() => <ResendSignup onSubmit={resendSignUpAsync} />} />
+  return(
+    <div>
+      
 
-      <Route exact path='/signin' render={() => <SignIn onSubmit={signInAsync} variant={bootstrapVariant} />} />
+      <Route exact path='/login' component={Login} />
 
-      <Route exact path='/forgotpassword' render={() => <ForgotPassword onSubmit={forgotPasswordAsync} />} />
-      <Route exact path='/forgotpasswordsubmit' render={() => <ForgotPasswordSubmit onSubmit={forgotPasswordSubmitAsync} />} />
-    </Switch>
+      <PrivateRoute path="/protected" component={AnApp} />
+    </div>
   )
 
+  // return(
+  //   <div>
+  //     <Route exact path='/signup' render={() => <SignUp onSubmit={signUpAsync} variant={bootstrapVariant}/>} />
+  //     <Route exact path='/confirmsignup' render={() => <ConfirmSignUp onSubmit={confirmSignUpAsync} />} />
+  //     <Route exact path='/resendsignup' render={() => <ResendSignup onSubmit={resendSignUpAsync} />} />
 
-  const routesWhenAuthenticated = (
-    <Switch>
-      <Route exact path='/anapp' component={AnApp} />
-      <Route exact path="/signin" render={() => (<Redirect to="/anapp" />)} />
-      <Route exact path="/signout" render={() => (<Redirect to="/anapp" />)} />
-    </Switch>
-  )
+  //     <Route exact path='/signin' render={() => <SignIn onSubmit={signInAsync} variant={bootstrapVariant} />} />
 
-  return (
-    <React.Fragment>
-      {authenticated ? routesWhenAuthenticated : routesWhenNotAuthenticated}
-    </React.Fragment>
+  //     <Route exact path='/forgotpassword' render={() => <ForgotPassword onSubmit={forgotPasswordAsync} />} />
+  //     <Route exact path='/forgotpasswordsubmit' render={() => <ForgotPasswordSubmit onSubmit={forgotPasswordSubmitAsync} />} />
 
-  )
+  //     <PrivateRoute path="/protected" component={AnApp} />
+  //   </div>
+  // )
+
+  // const routesWhenAuthenticated = (
+  //   <Switch>
+  //     <Route exact path='/anapp' component={AnApp} />
+  //     <Route exact path="/signin" render={() => (<Redirect to="/anapp" />)} />
+  //     <Route exact path="/signout" render={() => (<Redirect to="/anapp" />)} />
+  //   </Switch>
+  // )
+
+  // return (
+  //   <React.Fragment>
+  //     {authenticated ? routesWhenAuthenticated : routesWhenNotAuthenticated}
+  //   </React.Fragment>
+
+  // )
 }

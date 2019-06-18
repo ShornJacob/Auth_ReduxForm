@@ -1,5 +1,6 @@
 import NavBar from '../components/NavBar'
 import RoutedApp from '../components/Auth/RoutedApp'
+import PrivateRoute from '../components/Auth/PrivateRoute'
 
 import { connect } from 'react-redux'
 
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => ({
 
 const connectedNavBar =  connect(mapStateToProps)(NavBar)
 const connectedRoutedApp =  connect(mapStateToProps)(RoutedApp)
+const connectedRoute =  connect(mapStateToProps)(PrivateRoute)
 
 
-
-export {connectedNavBar, connectedRoutedApp}
+export {connectedNavBar, connectedRoutedApp, connectedRoute}
