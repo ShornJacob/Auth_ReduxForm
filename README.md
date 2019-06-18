@@ -24,3 +24,7 @@ https://github.com/aws-amplify/amplify-js/wiki
 
 Private -Route Redirect implemented
 
+App.js has a PrivateRoute and a Route to login page
+
+fakeAuth is used in PrivateROute
+
