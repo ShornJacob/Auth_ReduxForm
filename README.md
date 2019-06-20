@@ -7,5 +7,5 @@ fakeAuth is used in PrivateROute
 
 A basic login is implemented via aws amplify
 
-branch 8 - 
+branch 8 - Auth is now persistant across sessions
 
