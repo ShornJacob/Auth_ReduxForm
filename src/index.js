@@ -6,7 +6,10 @@ import store from './reducers';
 import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css'
+import { checkCurrentAuthentication } from './util'
 //Provider store to the Routed App
+
+checkCurrentAuthentication()
 
 ReactDOM.render(
   <Provider store={store}>

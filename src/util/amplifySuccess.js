@@ -1,5 +1,5 @@
-import store from '../../reducers'
-import {loginSuccess,logoutSuccess} from '../../actions'
+import store from '../reducers'
+import {loginSuccess,logoutSuccess} from '../actions'
 
 
 export const signInSuccess = (response) => {

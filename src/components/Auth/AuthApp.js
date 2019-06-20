@@ -22,14 +22,14 @@ import { Route } from 'react-router-dom'
 
 import Landing from "../Landing";
 
-import { checkCurrentAuthentication } from './'
+
 
 
 
 export default () => {
 
   //generic function that checks authetication and dispatches action for login
-  checkCurrentAuthentication()
+ // checkCurrentAuthentication()
 
   return (
     <div>
