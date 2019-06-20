@@ -1,11 +1,15 @@
 import Auth from '@aws-amplify/auth'
 import awsExports from '../../../aws-exports'
-import {signUpSuccess, confirmSignUpSuccess,resendSignUpSuccess,
-        signInSuccess,forgotPasswordSuccess, forgotPasswordSubmitSuccess,
-        signOutSuccess } from '../../../util/auth/success'
-import  {signUpError, confirmSignUpError,resendSignUpError,
-         signInError,forgotPasswordError, forgotPasswordSubmitError,
-         signOutError} from '../../../util/auth/error'
+import {
+    signUpSuccess, confirmSignUpSuccess, resendSignUpSuccess,
+    signInSuccess, forgotPasswordSuccess, forgotPasswordSubmitSuccess,
+    signOutSuccess,currentlyAuthenticated
+} from '../../../util/auth/success'
+import {
+    signUpError, confirmSignUpError, resendSignUpError,
+    signInError, forgotPasswordError, forgotPasswordSubmitError,
+    signOutError
+} from '../../../util/auth/error'
 
 //aws-amplify is decalrative
 //https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-aws-amplify-a-declarative-javascript-library-for-cloud-development-with-mobile-or-web-applications/
@@ -32,25 +36,25 @@ export const signUpAsync = (values) => {
 
 export const confirmSignUpAsync = (values) => {
     // console.log(values)
- 
-     return Auth.confirmSignUp(values.email, values.code).then((response) => {
-         confirmSignUpSuccess(response)
-     }).catch((error) => {
-         confirmSignUpError(error)
-     })
- }
+
+    return Auth.confirmSignUp(values.email, values.code).then((response) => {
+        confirmSignUpSuccess(response)
+    }).catch((error) => {
+        confirmSignUpError(error)
+    })
+}
 
 
- export const resendSignUpAsync = (values) => {
+export const resendSignUpAsync = (values) => {
     // console.log(values)
- 
-     return Auth.resendSignUp(values.email).then((response) => {
+
+    return Auth.resendSignUp(values.email).then((response) => {
         resendSignUpSuccess(response)
-     }).catch((error) => {
+    }).catch((error) => {
         resendSignUpError(error)
-     })
- }
- 
+    })
+}
+
 
 
 export const signInAsync = (values) => {
@@ -97,4 +101,19 @@ export const signOutAsync = () => {
     }).catch((error) => {
         signOutError(error)
     })
+}
+
+//check if authentication exists already
+
+export const currentAuthenticatedUserAsync = () => {
+
+    //https://aws-amplify.github.io/docs/js/authentication#retrieve-current-authenticated-user
+return Auth.currentAuthenticatedUser({
+    bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+}).then((response) => {
+    currentlyAuthenticated(response)
+}).catch((error) => {
+    console.log(error)
+})
+    
 }

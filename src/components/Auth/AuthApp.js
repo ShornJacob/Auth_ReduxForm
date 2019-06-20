@@ -1,11 +1,12 @@
 import React from "react";
 import {connectedNavBar as NavBar} from '../../containers/Auth'
+import {connectedPublicRoute as PublicRoute} from '../../containers/Auth'
 // import {connectedRoutedApp as RoutedApp} from '../../containers/Auth'
 
 // import PrivateRoute from './PrivateRoute'
 // import PublicRoute from './PublicRoute'
 
-
+import LAnding from '../Landing'
 
 
 
@@ -24,13 +25,15 @@ import {
 import { Route } from 'react-router-dom'
 
 import AnApp from '../../AnApp'
-
+import Landing from "../Landing";
+import Auth from '@aws-amplify/auth'
+import {checkCurrentAuthentication} from './'
 
 
 
 export default () => {
 
-
+    checkCurrentAuthentication()
 
     return (
       <div>
@@ -47,8 +50,8 @@ export default () => {
       
 
       {/* <PublicRoute path='/signin' render={() => <SignIn onSubmit={signInAsync} variant={bootstrapVariant} />} /> */}
-      <Route path='/' component={AnApp} />
-      <Route path='/signin' component={AmplifySignIn} />
+      <Route path='/' component={Landing} />
+      <PublicRoute path='/signin' component={AmplifySignIn} />
       
 
        {/* <PublicRoute path='/signin' component={AmplifySignIn}/> */}

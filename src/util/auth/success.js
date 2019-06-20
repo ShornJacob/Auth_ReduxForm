@@ -1,5 +1,5 @@
 import store from '../../reducers'
-import {loginSuccess,logoutSuccess} from '../../actions'
+import {loginSuccess,logoutSuccess,isCurrentlyAuthenticated} from '../../actions'
 
 
 export const signInSuccess = (response) => {
@@ -64,6 +64,21 @@ export const signOutSuccess = (response) => {
     console.log("signOutSuccess")
 
     store.dispatch(logoutSuccess())
+
+}
+
+export const currentlyAuthenticated = (response) => {
+
+    //console.log(response)
+
+    const { jwtToken,payload } = response.signInUserSession.idToken
+
+    const {email} = payload
+
+    //console.log(jwtToken,email)
+
+    //calls login action
+    store.dispatch(loginSuccess(email,jwtToken))
 
 }
 

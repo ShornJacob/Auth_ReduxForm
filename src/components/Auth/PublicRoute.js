@@ -1,27 +1,25 @@
 import React from "react";
 import { Route,   Redirect } from 'react-router-dom'
-//import {connectedRoute} from '../../containers/Auth'
-
+import AnApp from '../../AnApp'
 
 //https://reacttraining.com/react-router/web/example/auth-workflow
 //Example gets it from fakeAuth
 //Modified to get from store State
 
-function PublicRoute({ component: Component, ...rest }) {
+function PublicRoute({ authenticated, ownProps }) {
 
-    console.log(Component)
-    console.log(rest)
+    let {component:Component, ...rest} = ownProps
 
+    // console.log(authenticated)
+    // console.log(Component)
+    // console.log(rest)
 
-
-    const fakeAuth = false;
-
-    //If  authenicated, ie if fakeAuth is true, redirect
+    //Public Route, If  not authenicated ie  true, redirect
     return (
       <Route
-      //  JSX Spread sttributes
+      //  JSX Spread sttributes to get path for Route
         {...rest}
-        render={() =>  fakeAuth ? (
+        render={() =>  authenticated ? (
             <Redirect
               to={{pathname: "/" }}
             />

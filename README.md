@@ -7,3 +7,5 @@ fakeAuth is used in PrivateROute
 
 A basic login is implemented via aws amplify
 
+branch 8 - 
+
