@@ -10,14 +10,5 @@ export const loginSuccess = (email,token) => {
 
 export const logoutSuccess = () => ({type : 'LOGOUT_SUCCESS'})
 
-export const isCurrentlyAuthenticated = (email,token) => {
-    return {
-        type : 'CURRENTLY_AUTHENTICATED',
-        payload : {
-            email,
-            token
-        }
-    }
-}
 
    

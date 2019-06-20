@@ -5,5 +5,5 @@ import {currentAuthenticatedUserAsync} from './AmplifyFunctions.js'
 export const checkCurrentAuthentication = () => {
 
     //calls amplify in this instance
-    const user = currentAuthenticatedUserAsync()
+    currentAuthenticatedUserAsync()
 }

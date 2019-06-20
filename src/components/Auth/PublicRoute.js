@@ -1,6 +1,6 @@
 import React from "react";
 import { Route,   Redirect } from 'react-router-dom'
-import AnApp from '../../AnApp'
+
 
 //https://reacttraining.com/react-router/web/example/auth-workflow
 //Example gets it from fakeAuth
