@@ -1,11 +1,11 @@
 import Auth from '@aws-amplify/auth'
-import awsExports from '../../aws-exports'
+import awsExports from '../../../aws-exports'
 import {signUpSuccess, confirmSignUpSuccess,resendSignUpSuccess,
         signInSuccess,forgotPasswordSuccess, forgotPasswordSubmitSuccess,
-        signOutSuccess } from './success'
+        signOutSuccess } from '../../../util/auth/success'
 import  {signUpError, confirmSignUpError,resendSignUpError,
          signInError,forgotPasswordError, forgotPasswordSubmitError,
-         signOutError} from './error'
+         signOutError} from '../../../util/auth/error'
 
 //aws-amplify is decalrative
 //https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-aws-amplify-a-declarative-javascript-library-for-cloud-development-with-mobile-or-web-applications/

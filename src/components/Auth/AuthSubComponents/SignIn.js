@@ -4,50 +4,11 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-import AlertMessage from '../AlertMessage'
-import PropTypes from 'prop-types'
 
+import PropTypes from 'prop-types'
+import {AmplifySignInError}  from '../AmplifyComponents/AmplifySignIn'
 //Dealing with Errors
 
-const Message = ({ code, message }) => {
-
-  //console.log(code)
-  //console.log(message)
-
-  switch (code) {
-
-    case "UserNotConfirmedException":
-      return  (
-        <div>
-          <br />
-          <Alert variant="danger">
-            An email with Confirmation has been sent to the email . Please{''}
-            <Alert.Link href="/confirmsignup"> confirm </Alert.Link> user first.
-      </Alert>
-
-          <AlertMessage variant="danger" message={message}/>
-        </div>)
-
-    case "NotAuthorizedException":
-      return  (
-        <div>
-          <br />
-          <AlertMessage variant="danger" message={message}/>
-
-          <Alert variant="info">
-            <Alert.Link href="/forgotpassword"> Click here </Alert.Link>{''} if you forgot your password.
-         </Alert>
-
-        </div>)
-
-    default:
-      return (
-        <div>
-          <br />
-          <AlertMessage variant="danger" message={message} />
-        </div>)
-  }
-}
 
 
 //for rendering Input
@@ -85,7 +46,7 @@ let signInForm = props => {
 
 
       {/* if error variable is defined, display it */}
-      {error && <Message {...error} />}
+      {error && <div><br/><AmplifySignInError {...error} /></div>}
     </Container>
 
   )

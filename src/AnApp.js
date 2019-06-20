@@ -4,7 +4,7 @@ export default function AnApp({props}) {
 
   return (
     <div>
-      This is App Page.
+      Landing Page
     </div>
   )
 }

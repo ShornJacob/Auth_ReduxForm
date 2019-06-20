@@ -7,7 +7,7 @@ import { Route,   Redirect } from 'react-router-dom'
 //Example gets it from fakeAuth
 //Modified to get from store State
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PublicRoute({ component: Component, ...rest }) {
 
     console.log(Component)
     console.log(rest)
@@ -16,21 +16,20 @@ function PrivateRoute({ component: Component, ...rest }) {
 
     const fakeAuth = false;
 
-    //If  authenicated, ie if fakeAuth is false, redirect
+    //If  authenicated, ie if fakeAuth is true, redirect
     return (
       <Route
       //  JSX Spread sttributes
         {...rest}
         render={() =>  fakeAuth ? (
-            <Component />
-          ) : (
             <Redirect
-              to={{pathname: "/signin" }}
+              to={{pathname: "/" }}
             />
-          )
+          ) : 
+          <Component />
         }
       />
     );
   }
 
-  export default PrivateRoute
+  export default PublicRoute
