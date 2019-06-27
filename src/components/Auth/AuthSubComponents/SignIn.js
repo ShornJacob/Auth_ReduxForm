@@ -7,7 +7,6 @@ import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
 import {AmplifySignInError}  from '../AmplifyComponents/AmplifySignIn'
-//Dealing with Errors
 
 
 
@@ -29,7 +28,7 @@ let signInForm = props => {
   return (
     <Container className="justify-content-md-center">
 
-      <Alert variant={variant}>Sign in here if you already have an account</Alert>
+      <Alert variant={variant}>Already have an account. Sign In.</Alert>
 
       <Form onSubmit={handleSubmit}>
         <Form.Group>
