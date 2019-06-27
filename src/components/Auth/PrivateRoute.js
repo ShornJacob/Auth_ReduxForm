@@ -6,6 +6,8 @@ import { Route,   Redirect } from 'react-router-dom'
 //Example gets it from fakeAuth
 //Modified to get from store State
 
+//PrivateROut is an HOC
+
 function PrivateRoute({ authenticated, ownProps }) {
 
     let {component:Component, ...rest} = ownProps

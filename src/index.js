@@ -9,6 +9,7 @@ import './index.css'
 import { checkCurrentAuthentication } from './util'
 //Provider store to the Routed App
 
+//reducer has created store, so now can dispatch before anything
 checkCurrentAuthentication()
 
 ReactDOM.render(

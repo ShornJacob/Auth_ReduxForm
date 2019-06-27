@@ -6,6 +6,7 @@ import { Route,   Redirect } from 'react-router-dom'
 //Example gets it from fakeAuth
 //Modified to get from store State
 
+// Use named export for unconnected component (for tests)
 function PublicRoute({ authenticated, ownProps }) {
 
     let {component:Component, ...rest} = ownProps
@@ -16,7 +17,7 @@ function PublicRoute({ authenticated, ownProps }) {
 
     //Public Route, If  not authenicated ie  true, redirect
     return (
-      <Route
+      <Route exact
       //  JSX Spread sttributes to get path for Route
         {...rest}
         render={() =>  authenticated ? (
