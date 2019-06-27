@@ -9,3 +9,5 @@ A basic login is implemented via aws amplify
 
 branch 8 - Auth is now persistant across sessions
 
+branch 9 - A test made for Private route using enzymen and mount , but not working
+
