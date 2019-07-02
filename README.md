@@ -11,3 +11,5 @@ branch 8 - Auth is now persistant across sessions
 
 branch 9 - A test made for Private route using enzymen and mount , but not working
 
+branch 10 - Route tests now working
+
