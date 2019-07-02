@@ -6,8 +6,8 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
-import {AmplifyResetPasswordSuccess,AmplifyResetPasswordError}  from '../AmplifyComponents/AmplifyResetPassword'
-import { emailFormat, required } from '../../../util/validations'
+import {AmplifyResetPasswordRequestSuccess,AmplifyResetPasswordRequestError}  from './AmplifyComponents/AmplifyForgotPassword'
+import { emailFormat, required } from '../../util/validations'
 
 //for rendering Input
 const renderTextInput = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => {
@@ -48,11 +48,11 @@ let forgotPasswordForm = props => {
 
          
              {/* if error variable is defined, display it */}
-             {error && <div><br/><AmplifyResetPasswordError {...error} /></div>}
+             {error && <div><br/><AmplifyResetPasswordRequestError {...error} /></div>}
 
 
             {/* if submitSucceded  is defined, display Success ALert */}
-            {submitSucceeded && <div><br/><AmplifyResetPasswordSuccess/></div>}
+            {submitSucceeded && <div><br/><AmplifyResetPasswordRequestSuccess/></div>}
         </Container>
 
     )

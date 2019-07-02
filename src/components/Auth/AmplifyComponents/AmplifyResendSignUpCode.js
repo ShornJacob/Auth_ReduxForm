@@ -1,6 +1,6 @@
-import React from "react";
-import { resendSignUpAsync } from '../../../util/amplifyFunctions'
-import ResendSignUp from '../AuthSubComponents/ResendSignUp'
+import React from 'react'
+import { resendSignUpAsync } from '../../../util/amplifyAPI'
+import ResendSignUp from '../ResendConfirmationCode'
 import {bootstrapVariant} from '../../../constants'
 import DisplayComponent from '../AuthSubComponents/DisplayComponent'
 

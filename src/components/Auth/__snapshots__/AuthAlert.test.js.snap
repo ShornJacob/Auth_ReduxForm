@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="fade alert show"
+  role="alert"
+>
+   
+  AMessage
+   
+  
+</div>
+`;
+
+exports[`renders correctly 2`] = `
+<div
+  className="fade alert show"
+  role="alert"
+>
+   
+  AMessage
+   
+  <a
+    className="alert-link"
+    href="/alink"
+  >
+    here.
+  </a>
+</div>
+`;

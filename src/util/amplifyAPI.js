@@ -4,12 +4,12 @@ import {
     signUpSuccess, confirmSignUpSuccess, resendSignUpSuccess,
     signInSuccess, forgotPasswordSuccess, forgotPasswordSubmitSuccess,
     signOutSuccess,currentlyAuthenticated
-} from './amplifySuccess'
+} from './amplifySuccess.Callbacks'
 import {
     signUpError, confirmSignUpError, resendSignUpError,
     signInError, forgotPasswordError, forgotPasswordSubmitError,
     signOutError
-} from './amplifyErrors'
+} from './amplifyErrorCallbacks'
 
 //aws-amplify is decalrative
 //https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-aws-amplify-a-declarative-javascript-library-for-cloud-development-with-mobile-or-web-applications/
@@ -33,6 +33,8 @@ export const signUpAsync = (values) => {
         signUpError(error)
     })
 }
+
+
 
 export const confirmSignUpAsync = (values) => {
     // console.log(values)

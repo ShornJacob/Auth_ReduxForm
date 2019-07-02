@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 
 
-import {signOutAsync} from '../util/amplifyFunctions'
+import {signOutAsync} from '../util/amplifyAPI'
 
 
 export default function NavBar({ authenticated, authenticating, email }) {

@@ -1,11 +1,11 @@
-import React from "react";
-import { confirmSignUpAsync } from '../../../util/amplifyFunctions'
-import ConfirmEmail from '../AuthSubComponents/ConfirmEmail'
+import React from 'react'
+import { forgotPasswordSubmitAsync } from '../../../util/amplifyAPI'
+import ConfirmResetPassword from '../ConfirmResetPassword'
 import {bootstrapVariant} from '../../../constants'
 import DisplayComponent from '../AuthSubComponents/DisplayComponent'
 
 //message is received incase to display its  not dealth with
-export const AmplifyConfirmEmailError = ({ code, message}) => {
+export const AmplifyConfirmSignUpError = ({ code, message}) => {
 
   console.log(code)
   console.log(message)
@@ -13,12 +13,12 @@ export const AmplifyConfirmEmailError = ({ code, message}) => {
 
   let errorMessage , redirectlink , alertVariant
 
-   //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html
+  
         switch(code) {
           //This exception is thrown if a code has expired.
           case "ExpiredCodeException":
             errorMessage = "The confirmation code has expired. You can resend another code "
-            redirectlink = "/resendcode"
+            redirectlink = "/resendsignupcode"
             alertVariant = "info"
             break
     default :
@@ -35,7 +35,7 @@ export const AmplifyConfirmEmailError = ({ code, message}) => {
   }   
 
 
-  export const AmplifyConfirmEmailSuccess = () => {
+  export const AmplifyConfirmResetPasswordSuccess = () => {
 
     const successMessage = "The email has been successfully confirmed. Please sign in "
     const redirectlink = "/signin";
@@ -47,9 +47,9 @@ export const AmplifyConfirmEmailError = ({ code, message}) => {
 
 }
   
-export const AmplifyConfirmEmail = () => {
+export const AmplifyConfirmResetPassword = () => {
 
     return (
-      <ConfirmEmail onSubmit={confirmSignUpAsync} variant={bootstrapVariant} />
+      <yConfirmResetPassword onSubmit={forgotPasswordSubmitAsync} variant={bootstrapVariant} />
     )
   }

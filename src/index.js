@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AuthApp from './components/Auth/AuthApp';
+import AuthApp from './components/Auth/AuthRoutes';
 import { Provider } from 'react-redux';
 import store from './reducers';
 import { BrowserRouter } from 'react-router-dom'

@@ -1,4 +1,4 @@
-import {currentAuthenticatedUserAsync} from './amplifyFunctions'
+import {currentAuthenticatedUserAsync} from './amplifyAPI'
 
 //generic
 export const checkCurrentAuthentication = () => {

@@ -6,7 +6,9 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
-import {AmplifySignInError}  from '../AmplifyComponents/AmplifySignIn'
+import AuthResult  from './AuthResult'
+import {signInAsync} from '../../util/amplifyAPI'
+import {bootstrapVariant} from '../../constants'
 
 
 
@@ -23,12 +25,14 @@ const renderTextInput = ({ input, label, type, placeholder }) => {
 
 let signInForm = props => {
 
-  const { error, handleSubmit, pristine, submitting, variant } = props
+  const { error, handleSubmit, pristine, submitting } = props
+
+  const form = 'signInForm';
 
   return (
     <Container className="justify-content-md-center">
 
-      <Alert variant={variant}>Already have an account. Sign In.</Alert>
+      <Alert variant={bootstrapVariant}>Already have an account. Sign In.</Alert>
 
       <Form onSubmit={handleSubmit}>
         <Form.Group>
@@ -39,13 +43,13 @@ let signInForm = props => {
           <Field name="password" component={renderTextInput} label="Password" type="password" placeholder="Password" />
         </Form.Group>
 
-        <Button type="submit" variant={variant} disabled={pristine || submitting}>Sign In</Button>
+        <Button type="submit" variant={bootstrapVariant} disabled={pristine || submitting}>Sign In</Button>
 
       </Form>
 
 
       {/* if error variable is defined, display it */}
-      {error && <div><br/><AmplifySignInError {...error} /></div>}
+      {error && <div><br/><AuthResult {...error} formName={form} submitSucceeded={false}/></div>}
     </Container>
 
   )
@@ -55,6 +59,11 @@ signInForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 }
 
-export default reduxForm({
+const SignInReduxForm = reduxForm({
   form: 'signIn'
 })(signInForm)
+
+const AmplifySignIn = () => <SignInReduxForm onSubmit={signInAsync} />
+
+export {AmplifySignIn}
+

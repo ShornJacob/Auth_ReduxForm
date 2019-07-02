@@ -6,12 +6,8 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
-import {AmplifyConfirmEmailSuccess,AmplifyConfirmEmailError}  from '../AmplifyComponents/AmplifyConfirmEmail'
-import { emailFormat, required } from '../../../util/validations'
-
-
-// //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html
-
+import {AmplifyResendSignUpCodeSuccess,AmplifyResendSignUpCodeError}  from './AmplifyComponents/AmplifyResendSignUpCode'
+import { emailFormat, required } from '../../util/validations'
 
 //for rendering Input
 const renderTextInput = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => {
@@ -25,14 +21,14 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 }
 
 
-let confirmSignUpForm = props => {
+let forgotPasswordForm = props => {
 
-    const { error, pristine, handleSubmit, submitting , submitSucceeded, variant} = props
+    const { error, pristine, handleSubmit, submitting , submitSucceeded,  variant} = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={variant}>Confirm verification code for sign up.</Alert>
+            <Alert variant={variant}>Resend signup confirmation code.</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -45,34 +41,27 @@ let confirmSignUpForm = props => {
                 </Form.Group>
 
 
-
-                <Form.Group>
-                    <Field name="code"
-                        component={renderTextInput}
-                        label="Code"
-                        type="number"
-                        placeholder="Code"
-                        validate={[required]} />
-                </Form.Group>
-
-                <Button variant={variant} type="submit" disabled={pristine || submitting}>Confirm Sign Up</Button>
+                <Button variant={variant} type="submit" disabled={pristine || submitting}>Resend</Button>
 
             </Form>
 
 
-            {/* if error variable is defined, display it */}
-            {error && <div><br/><AmplifyConfirmEmailError {...error} /></div>}
+         
+             {/* if error variable is defined, display it */}
+             {error && <div><br/><AmplifyResendSignUpCodeError {...error} /></div>}
 
-            {submitSucceeded && <div><br/><AmplifyConfirmEmailSuccess /></div>}
+
+            {/* if submitSucceded  is defined, display Success ALert */}
+            {submitSucceeded && <div><br/><AmplifyResendSignUpCodeSuccess/></div>}
         </Container>
 
     )
 }
 
-confirmSignUpForm.propTypes = {
+forgotPasswordForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
 }
 
 export default reduxForm({
-    form: 'confirmSignUp'
-})(confirmSignUpForm)
+    form: 'forgotPassword'
+})(forgotPasswordForm)
