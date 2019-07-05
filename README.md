@@ -13,3 +13,6 @@ branch 9 - A test made for Private route using enzymen and mount , but not worki
 
 branch 10 - Route tests now working
 
+//https://github.com/facebook/create-react-app/releases/tag/v3.0.0
+Create React App 3.0.0
+//support setting baseUrl in jsconfig.json and tsconfig.json
