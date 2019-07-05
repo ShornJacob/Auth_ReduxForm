@@ -16,3 +16,6 @@ branch 10 - Route tests now working
 //https://github.com/facebook/create-react-app/releases/tag/v3.0.0
 Create React App 3.0.0
 //support setting baseUrl in jsconfig.json and tsconfig.json
+
+branch11
+gitignore for aws-exports
