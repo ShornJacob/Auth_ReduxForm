@@ -7,8 +7,9 @@ import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
 import { emailFormat, required } from '../util/validations'
-import AuthResult  from '../components/AuthResult'
-import {confirmSignUpAsync} from '../util/amplifyAPI'
+import AuthResult from 'auth/components/AuthResult'
+import { confirmSignUpAsync } from 'auth/util/amplifyAPI'
+import { bootstrapVariant } from 'auth/constants'
 
 //Amplify Functions - Route names are lowercase for each
 // signUp
@@ -36,14 +37,14 @@ const renderTextInput = ({ input, label, type, placeholder, meta: { touched, err
 
 let confirmSignUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting , submitSucceeded, variant} = props
+    const { error, pristine, handleSubmit, submitting, submitSucceeded, variant } = props
 
     const formName = 'confirmSignUpForm'
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={variant}>Confirm verification code for sign up.</Alert>
+            <Alert variant={bootstrapVariant}>Confirm verification code for sign up.</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -66,17 +67,17 @@ let confirmSignUpForm = props => {
                         validate={[required]} />
                 </Form.Group>
 
-                <Button variant={variant} type="submit" disabled={pristine || submitting}>Confirm Sign Up</Button>
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>Confirm Sign Up</Button>
 
             </Form>
 
 
-               {/* if error variable is defined, display it */}
-               {error && <div><br/><AuthResult {...error} formName={formName}/></div>}
+            {/* if error variable is defined, display it */}
+            {error && <div><br /><AuthResult {...error} formName={formName} /></div>}
 
 
-{/* if submitSucceded  is defined, display Success ALert */}
-{submitSucceeded && <div><br/><AuthResult  formName={formName} submitSucceeded /></div>}
+            {/* if submitSucceded  is defined, display Success ALert */}
+            {submitSucceeded && <div><br /><AuthResult formName={formName} submitSucceeded /></div>}
         </Container>
 
     )
@@ -88,8 +89,7 @@ confirmSignUpForm.propTypes = {
 
 const ConfirmSignUpReduxForm = reduxForm({
     form: 'confirmSignUp'
-  })(confirmSignUpForm)
-  
- export const AmplifyConfirmSignUp = () => <ConfirmSignUpReduxForm onSubmit={confirmSignUpAsync} />
-  
-  
+})(confirmSignUpForm)
+
+export const AmplifyConfirmSignUp = () => <ConfirmSignUpReduxForm onSubmit={confirmSignUpAsync} />
+

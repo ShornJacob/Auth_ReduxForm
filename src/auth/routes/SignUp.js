@@ -5,9 +5,10 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import PropTypes from 'prop-types'
-import { emailFormat, required, passwordRequirement, confirmPassword } from '../util/validations'
-import AuthResult  from '../components/AuthResult'
-import {signUpAsync} from '../util/amplifyAPI'
+import { emailFormat, required, passwordRequirement, confirmPassword } from 'auth/util/validations'
+import AuthResult  from 'auth/components/AuthResult'
+import {signUpAsync} from 'auth/util/amplifyAPI'
+import {bootstrapVariant} from 'auth/constants'
 
 
 //Amplify Functions - Route names are lowercase for each
@@ -40,7 +41,7 @@ let signUpForm = props => {
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={variant}>Sign up as a new user.</Alert>
+            <Alert variant={bootstrapVariant}>Sign up as a new user.</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -70,7 +71,7 @@ let signUpForm = props => {
                         validate={[required, confirmPassword]} />
                 </Form.Group>
 
-                <Button variant={variant} type="submit" disabled={pristine || submitting}>Sign Up</Button>
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>Sign Up</Button>
 
             </Form>
 

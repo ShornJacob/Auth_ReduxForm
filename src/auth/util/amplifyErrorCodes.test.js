@@ -47,16 +47,16 @@ test('Error code UserNotConfirmedException error return has a  Redirect link to 
     )
 })
 
+//this error is returned also by other exceptions. not just wrong password
+// test('Error code NotAuthorizedException error return has a  Redirect link to forgotpassword display', () => {
+//     const obj = amplifyErrorCodes('NotAuthorizedException')
+//     expect(obj).toEqual(expect.objectContaining({
 
-test('Error code NotAuthorizedException error return has a  Redirect link to forgotpassword display', () => {
-    const obj = amplifyErrorCodes('NotAuthorizedException')
-    expect(obj).toEqual(expect.objectContaining({
-
-            redirectLink: "/forgotpassword",
-            alertVariant : "danger"
-        })
-    )
-})
+//             redirectLink: "/forgotpassword",
+//             alertVariant : "danger"
+//         })
+//     )
+// })
 
 
 test('Error code LimitExceededException error return has no redirectLink object and display variant of danger', () => {
@@ -70,10 +70,10 @@ test('Error code LimitExceededException error return has no redirectLink object 
 })
 
 
-test('Unknown code and message returns the same message with a dange reDirect ', () => {
+test('Unknown code and message returns the same message with a danger reDirect ', () => {
     const obj = amplifyErrorCodes('UnknownCode','message')
     expect(obj).toEqual(expect.objectContaining({
-            errorMessage : 'message',
+            message : 'message',
             redirectLink: undefined,
             alertVariant: "danger"
         })

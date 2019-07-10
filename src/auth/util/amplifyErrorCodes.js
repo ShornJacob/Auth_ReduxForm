@@ -19,7 +19,7 @@ export default (code, message) => {
         //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SignUp.html
         //This exception is thrown when Amazon Cognito encounters a user name that already exists in the user pool.
         case "UsernameExistsException":
-            errorMessage = "Email already registered. You may reset your password ";
+            errorMessage= "Email already registered. You may reset your password ";
             redirectLink = "/resetpassword";
             break;
 //-------------------------------------------------------------------------------------------------------------------------
@@ -44,16 +44,18 @@ export default (code, message) => {
         //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifyUserAttribute.html
         //This exception is thrown when a user is not confirmed successfully.
         case "UserNotConfirmedException":
-            errorMessage = "An email with a confirmation code has been sent to the email. Please confirm the email and code  "
+            errorMessage = "An email with a confirmation code has been sent to the email. Please confirm email and code  "
             redirectLink = "/confirmsignup"
             break;
-        //This exception is thrown when a user is not authorized.
+
+        //This exception is thrown in many circumstances
+        //Commented out because confimed users get this exception when trying to confirm email and code
         //In this instance, when password is wrong   
-        case "NotAuthorizedException":
-            errorMessage = "Incorrect username or password. You may reset password "
-            redirectLink = "/forgotpassword"
-            alertVariant = "danger"
-            break;
+        // case "NotAuthorizedException":
+        //     errorMessage = "Incorrect username or password. You may reset password "
+        //     redirectLink = "/forgotpassword"
+        //     alertVariant = "danger"
+        //     break;
 //------------------------------------------------------------------------------------------------------------------------------
         //resetpasswordrequest
         //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ForgotPassword.html
@@ -64,15 +66,16 @@ export default (code, message) => {
             break;
 
 //-------------------------------------------------------------------------------------------------------------------------------
-       //confirmresetpassword
-       //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html
+       //default - return code
         default:
             errorMessage = message;
+            redirectLink = undefined
             alertVariant = "danger";
     }
 
-    return {
-        errorMessage,
+    //rename ErrorMessage as message in return object
+    return {   
+        message : errorMessage,
         redirectLink,
         alertVariant
     }

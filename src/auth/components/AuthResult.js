@@ -19,5 +19,5 @@ export default ({code,message,formName, submitSucceeded = false}) => {
 
     console.log(msgObj)
 
-    return(<Alert variant={msgObj.alertVariant}> {msgObj.errorMessage} {msgObj.redirectLink ?  <a href={msgObj.redirectLink} className="alert-link">here.</a> : ''}</Alert>)
+    return(<Alert variant={msgObj.alertVariant}> {msgObj.message} {msgObj.redirectLink ?  <a href={msgObj.redirectLink} className="alert-link">here.</a> : ''}</Alert>)
 }

@@ -6,9 +6,9 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
-import AuthResult  from '../components/AuthResult'
-import {signInAsync} from '../util/amplifyAPI'
-import {bootstrapVariant} from '../../constants'
+import AuthResult  from 'auth/components/AuthResult'
+import {signInAsync} from 'auth/util/amplifyAPI'
+import {bootstrapVariant} from 'auth/constants'
 
 //Amplify Functions - Route names are lowercase for each
 // signUp

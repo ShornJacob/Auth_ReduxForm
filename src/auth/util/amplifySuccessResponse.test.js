@@ -15,7 +15,8 @@ test('SignUpForm Success - has a  Redirect link to confirmsignup ', () => {
 
     expect(obj).toEqual(expect.objectContaining({
 
-            redirectLink: "/confirmsignup"
+            redirectLink: "/confirmsignup",
+            alertVariant:"success"
         })
     )
 })
