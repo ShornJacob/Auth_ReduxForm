@@ -69,3 +69,13 @@ test('Error code LimitExceededException error return has no redirectLink object 
     )
 })
 
+
+test('Unknown code and message returns the same message with a dange reDirect ', () => {
+    const obj = amplifyErrorCodes('UnknownCode','message')
+    expect(obj).toEqual(expect.objectContaining({
+            errorMessage : 'message',
+            redirectLink: undefined,
+            alertVariant: "danger"
+        })
+    )
+})
