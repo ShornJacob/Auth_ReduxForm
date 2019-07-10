@@ -17,7 +17,7 @@ export default ({code,message,formName, submitSucceeded = false}) => {
     //If true, submitSucceeded is true
     const msgObj = submitSucceeded ?  amplifySuccessResponse(formName): amplifyErrorCodes(code,message)
 
-    //console.log(msgObj)
+    console.log(msgObj)
 
-    return(<Alert variant={msgObj.variant}> {msgObj.message} {msgObj.redirectLink ?  <a href={msgObj.redirectLink} className="alert-link">here.</a> : ''}</Alert>)
+    return(<Alert variant={msgObj.alertVariant}> {msgObj.errorMessage} {msgObj.redirectLink ?  <a href={msgObj.redirectLink} className="alert-link">here.</a> : ''}</Alert>)
 }
