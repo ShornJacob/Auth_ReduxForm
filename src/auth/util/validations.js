@@ -4,8 +4,9 @@ export const emailFormat = value =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]/i.test(value) ?
   'Invalid email address.' : undefined
 
+//https://stackoverflow.com/a/14850765/669577
 export const passwordRequirement = value =>
-  value && !/^(?=.*\d).{8,}$/i.test(value) ?
+  value && !/^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/i.test(value) ?
   'Minimum of 8 charecters and atleast a digit.' : undefined
 
 
