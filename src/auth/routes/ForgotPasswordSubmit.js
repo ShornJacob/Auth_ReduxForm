@@ -4,55 +4,74 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-import AuthResult  from '../components/AuthResult'
-import {forgotPasswordSubmitAsync} from '../util/amplifyAPI'
+import ErrorAlert from 'auth/components/ErrorAlert'
+import SuccessAlert from 'auth/components/SuccessAlert'
+import { forgotPasswordSubmitAsync } from 'auth/amplify'
+import { bootstrapVariant, formTitles,renderTextInput, formSubmitText } from 'auth/util'
+import { emailFormat, required, passwordRequirement, confirmPassword } from 'auth/amplify/validations'
 
-
-
-
-
-const renderTextInput = ({ input, label, type, placeholder }) => {
-    return (
-        <div>
-            <Form.Label>{label}</Form.Label>
-            <Form.Control type={type} placeholder={placeholder} {...input} />
-        </div>
-    )
-}
+const formName = "forgotPasswordSubmit"
 
 let forgotPasswordSubmitForm = props => {
 
-    const { error, handleSubmit, pristine, submitting, submitSucceeded , variant} = props
+    const { error, handleSubmit, pristine, submitting, submitSucceeded } = props
 
-    const formName = "forgotPasswordForm"
-
+    console.log(error)
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={variant}>Confirm email with a code</Alert>
+            <Alert variant={bootstrapVariant}>{formTitles[formName]}</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                    <Field name="email" component={renderTextInput} label="Email" type="email" placeholder="Email" />
+                    <Field name="email"
+                        label="Email"
+                        type="email"
+                        placeholder="Email"
+                        component={renderTextInput}
+                        validate={[required, emailFormat]} />
                 </Form.Group>
 
 
                 <Form.Group>
-                    <Field name="code" component={renderTextInput} label="Code" type="number" placeholder="Code" />
+                    <Field name="code"
+                        component={renderTextInput}
+                        label="Code" type="number"
+                        placeholder="Code"
+                        validate={[required]} />
                 </Form.Group>
 
-                <Button variant={variant} type="submit" disabled={pristine || submitting}>Forgot Password</Button>
+
+                <Form.Group>
+                    <Field name="password"
+                        component={renderTextInput}
+                        label="New Password"
+                        type="password"
+                        placeholder="Password"
+                        validate={[required, passwordRequirement]} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Field name="password2"
+                        component={renderTextInput}
+                        label="Confirm Password"
+                        type="password"
+                        placeholder="Password"
+                        validate={[required, confirmPassword]} />
+                </Form.Group>
+
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>{formSubmitText[formName]}</Button>
 
 
             </Form>
 
 
-             {/* if error variable is defined, display it */}
-             {error && <div><br/><AuthResult {...error} formName={formName}/></div>}
+            {/* if error variable is defined, display it */}
+            {error && <div><br /><ErrorAlert {...error} /></div>}
 
 
-{/* if submitSucceded  is defined, display Success ALert */}
-{submitSucceeded && <div><br/><AuthResult  formName={formName} submitSucceeded /></div>}
+            {/* if submitSucceded  is defined, display Success ALert */}
+            {submitSucceeded && <div><br /><SuccessAlert formName={formName} /></div>}
 
         </Container>
 
@@ -63,6 +82,6 @@ let forgotPasswordSubmitForm = props => {
 
 const ForgotPasswordSubmitReduxForm = reduxForm({
     form: 'forgotPasswordSubmit'
-  })(forgotPasswordSubmitForm)
-  
- export const AmplifyForgotPasswordSubmit = () => <ForgotPasswordSubmitReduxForm onSubmit={forgotPasswordSubmitAsync} />
+})(forgotPasswordSubmitForm)
+
+export const AmplifyForgotPasswordSubmit = () => <ForgotPasswordSubmitReduxForm onSubmit={forgotPasswordSubmitAsync} />

@@ -6,11 +6,11 @@ import store from './reducers';
 import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
 import './index.css'
-import { checkCurrentAuthentication } from './auth/util/index.js'
+import { currentAuthenticatedUserAsync } from 'auth/amplify'
 //Provider store to the Routed App
 
 //reducer has created store, so now can dispatch before anything
-checkCurrentAuthentication()
+currentAuthenticatedUserAsync()
 
 ReactDOM.render(
   <Provider store={store}>

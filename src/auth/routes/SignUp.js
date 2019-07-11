@@ -5,11 +5,13 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 import PropTypes from 'prop-types'
-import { emailFormat, required, passwordRequirement, confirmPassword } from 'auth/util/validations'
-import AuthResult  from 'auth/components/AuthResult'
-import {signUpAsync} from 'auth/util/amplifyAPI'
-import {bootstrapVariant} from 'auth/constants'
+import { emailFormat, required, passwordRequirement, confirmPassword } from 'auth/amplify/validations'
+import ErrorAlert  from 'auth/components/ErrorAlert'
+import SuccessAlert  from 'auth/components/SuccessAlert'
+import {signUpAsync} from 'auth/amplify'
+import {bootstrapVariant,formTitles,formSubmitText, renderTextInput} from 'auth/util'
 
+const formName =  "signUp"
 
 //Amplify Functions - Route names are lowercase for each
 // signUp
@@ -21,27 +23,25 @@ import {bootstrapVariant} from 'auth/constants'
 // signOut
 
 //for rendering Input
-const renderTextInput = ({ input, label, type, placeholder ,meta: { touched, error, warning } }) => {
-    return (
-        <div>
-            <Form.Label>{label}</Form.Label>
-            <Form.Control type={type} placeholder={placeholder} {...input} />
-            {touched && ((error && <span className="error">{error}</span>))}
-        </div>
-    )
-}
+// const renderTextInput = ({ input, label, type, placeholder ,meta: { touched, error, warning } }) => {
+//     return (
+//         <div>
+//             <Form.Label>{label}</Form.Label>
+//             <Form.Control type={type} placeholder={placeholder} {...input} />
+//             {touched && ((error && <span className="error">{error}</span>))}
+//         </div>
+//     )
+// }
 
 
 let signUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting, submitSucceeded,  variant } = props
-
-    const formName = 'signUpForm'
+    const { error, pristine, handleSubmit, submitting, submitSucceeded } = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={bootstrapVariant}>Sign up as a new user.</Alert>
+            <Alert variant={bootstrapVariant}>{formTitles[formName]}</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -71,17 +71,17 @@ let signUpForm = props => {
                         validate={[required, confirmPassword]} />
                 </Form.Group>
 
-                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>Sign Up</Button>
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>{formSubmitText[formName]}</Button>
 
             </Form>
 
 
              {/* if error variable is defined, display it */}
-             {error && <div><br/><AuthResult {...error} formName={formName}/></div>}
+             {error && <div><br/><ErrorAlert {...error}/></div>}
 
 
             {/* if submitSucceded  is defined, display Success ALert */}
-            {submitSucceeded && <div><br/><AuthResult formName={formName} submitSucceeded /></div>}
+            {submitSucceeded && <div><br/><SuccessAlert formName={formName} /></div>}
         </Container>
 
     )
@@ -92,7 +92,7 @@ signUpForm.propTypes = {
 }
 
 const SignUpReduxForm = reduxForm({
-    form: 'signUp'
+    form: formName
   })(signUpForm)
   
   export const AmplifySignUp = () => <SignUpReduxForm onSubmit={signUpAsync} />

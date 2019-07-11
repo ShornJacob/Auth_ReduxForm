@@ -3,7 +3,7 @@ import awsExports from './aws-exports'
 import {
     signUpSuccess, confirmSignUpSuccess, resendSignUpSuccess,
     signInSuccess, forgotPasswordSuccess, forgotPasswordSubmitSuccess,
-    signOutSuccess,currentlyAuthenticated
+    signOutSuccess, currentlyAuthenticated
 } from './amplifySuccessCallbacks'
 import {
     signUpError, confirmSignUpError, resendSignUpError,
@@ -86,8 +86,8 @@ export const forgotPasswordAsync = (values) => {
 export const forgotPasswordSubmitAsync = (values) => {
 
     //console.log(values)
-
-    return Auth.forgotPasswordSubmit(values.email).then((response) => {
+    //https://aws-amplify.github.io/amplify-js/api/classes/authclass.html#forgotpasswordsubmit
+    return Auth.forgotPasswordSubmit(values.email, values.code, values.password).then((response) => {
         forgotPasswordSubmitSuccess(response)
     }).catch((error) => {
         forgotPasswordSubmitError(error)
@@ -110,12 +110,13 @@ export const signOutAsync = () => {
 export const currentAuthenticatedUserAsync = () => {
 
     //https://aws-amplify.github.io/docs/js/authentication#retrieve-current-authenticated-user
-return Auth.currentAuthenticatedUser({
-    bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-}).then((response) => {
-    currentlyAuthenticated(response)
-}).catch((error) => {
-    console.log(error)
-})
-    
+    return Auth.currentAuthenticatedUser({
+        bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+    }).then((response) => {
+        currentlyAuthenticated(response)
+    }).catch((error) => {
+        console.log(error)
+    })
+
 }
+

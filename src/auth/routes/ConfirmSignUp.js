@@ -6,11 +6,13 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
-import { emailFormat, required } from '../util/validations'
-import AuthResult from 'auth/components/AuthResult'
-import { confirmSignUpAsync } from 'auth/util/amplifyAPI'
-import { bootstrapVariant } from 'auth/constants'
+import { emailFormat, required } from '../amplify/validations'
+import ErrorAlert from 'auth/components/ErrorAlert'
+import SuccessAlert  from 'auth/components/SuccessAlert'
+import { confirmSignUpAsync } from 'auth/amplify'
+import { bootstrapVariant, formTitles ,renderTextInput, formSubmitText } from 'auth/util'
 
+const formName = "confirmSignUp"
 //Amplify Functions - Route names are lowercase for each
 // signUp
 // confirmSignUp
@@ -23,28 +25,15 @@ import { bootstrapVariant } from 'auth/constants'
 // //https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html
 
 
-//for rendering Input
-const renderTextInput = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => {
-    return (
-        <div>
-            <Form.Label>{label}</Form.Label>
-            <Form.Control type={type} placeholder={placeholder} {...input} />
-            {touched && ((error && <span className="error">{error}</span>))}
-        </div>
-    )
-}
-
 
 let confirmSignUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting, submitSucceeded, variant } = props
-
-    const formName = 'confirmSignUpForm'
+    const { error, pristine, handleSubmit, submitting, submitSucceeded, } = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={bootstrapVariant}>Confirm verification code for sign up.</Alert>
+            <Alert variant={bootstrapVariant}>{formTitles[formName]}</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -67,17 +56,17 @@ let confirmSignUpForm = props => {
                         validate={[required]} />
                 </Form.Group>
 
-                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>Confirm Sign Up</Button>
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>{formSubmitText[formName]}</Button>
 
             </Form>
 
 
             {/* if error variable is defined, display it */}
-            {error && <div><br /><AuthResult {...error} formName={formName} /></div>}
+            {error && <div><br /><ErrorAlert {...error}/></div>}
 
 
-            {/* if submitSucceded  is defined, display Success ALert */}
-            {submitSucceeded && <div><br /><AuthResult formName={formName} submitSucceeded /></div>}
+             {/* if submitSucceded  is defined, display Success ALert */}
+             {submitSucceeded && <div><br/><SuccessAlert formName={formName} /></div>}
         </Container>
 
     )

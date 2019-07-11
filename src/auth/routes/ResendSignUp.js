@@ -4,11 +4,14 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-import AuthResult  from '../components/AuthResult'
+import ErrorAlert from 'auth/components/ErrorAlert'
+import SuccessAlert from 'auth/components/SuccessAlert'
 import PropTypes from 'prop-types'
-import {resendSignUpAsync} from '../util/amplifyAPI'
-import { emailFormat, required } from '../util/validations'
+import { resendSignUpAsync } from 'auth/amplify'
+import { emailFormat, required } from 'auth/amplify/validations'
+import { bootstrapVariant, formTitles, formSubmitText, renderTextInput } from 'auth/util'
 
+const formName = "resendSignUp"
 //Amplify Functions - Route names are lowercase for each
 // signUp
 // confirmSignUp
@@ -18,28 +21,16 @@ import { emailFormat, required } from '../util/validations'
 // forgotPasswordSubmit
 // signOut
 
-//for rendering Input
-const renderTextInput = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => {
-    return (
-        <div>
-            <Form.Label>{label}</Form.Label>
-            <Form.Control type={type} placeholder={placeholder} {...input} />
-            {touched && ((error && <span className="error">{error}</span>))}
-        </div>
-    )
-}
 
 
 let resendSignUpForm = props => {
 
-    const { error, pristine, handleSubmit, submitting , submitSucceeded,  variant} = props
-
-    let formName = "resendSignUpForm"
+    const { error, pristine, handleSubmit, submitting, submitSucceeded } = props
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={variant}>Resend signup confirmation code.</Alert>
+            <Alert variant={bootstrapVariant}>{formTitles[formName]}</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -52,18 +43,20 @@ let resendSignUpForm = props => {
                 </Form.Group>
 
 
-                <Button variant={variant} type="submit" disabled={pristine || submitting}>Resend</Button>
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>{formSubmitText[formName]}</Button>
 
             </Form>
 
 
-         
-             {/* if error variable is defined, display it */}
-             {error && <div><br/><AuthResult {...error} formName={formName}/></div>}
+
+
+            {/* if error variable is defined, display it */}
+            {error && <div><br /><ErrorAlert {...error} /></div>}
 
 
             {/* if submitSucceded  is defined, display Success ALert */}
-            {submitSucceeded && <div><br/><AuthResult  formName={formName} submitSucceeded /></div>}
+            {submitSucceeded && <div><br /><SuccessAlert formName={formName} /></div>}
+
         </Container>
 
     )
@@ -75,8 +68,8 @@ resendSignUpForm.propTypes = {
 
 const ResendSignUpReduxForm = reduxForm({
     form: 'resendSignUp'
-  })(resendSignUpForm)
-  
-  const AmplifyResendSignUp = () => <ResendSignUpReduxForm onSubmit={resendSignUpAsync} />
-  
-  export {AmplifyResendSignUp}
+})(resendSignUpForm)
+
+const AmplifyResendSignUp = () => <ResendSignUpReduxForm onSubmit={resendSignUpAsync} />
+
+export { AmplifyResendSignUp }

@@ -4,11 +4,13 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
-
+import { emailFormat, required } from 'auth/amplify/validations'
 import PropTypes from 'prop-types'
-import AuthResult  from 'auth/components/AuthResult'
-import {signInAsync} from 'auth/util/amplifyAPI'
-import {bootstrapVariant} from 'auth/constants'
+import ErrorAlert from 'auth/components/ErrorAlert'
+import { signInAsync } from 'auth/amplify'
+import { bootstrapVariant, formTitles , renderTextInput , formSubmitText } from 'auth/util'
+
+const formName = "signIn"
 
 //Amplify Functions - Route names are lowercase for each
 // signUp
@@ -21,43 +23,51 @@ import {bootstrapVariant} from 'auth/constants'
 
 
 //for rendering Input
-const renderTextInput = ({ input, label, type, placeholder }) => {
-  return (
-    <div>
-      <Form.Label>{label}</Form.Label>
-      <Form.Control type={type} placeholder={placeholder} {...input} />
-    </div>
-  )
-}
+// const renderTextInput = ({ input, label, type, placeholder }) => {
+//   return (
+//     <div>
+//       <Form.Label>{label}</Form.Label>
+//       <Form.Control type={type} placeholder={placeholder} {...input} />
+//     </div>
+//   )
+// }
 
 
 let signInForm = props => {
 
   const { error, handleSubmit, pristine, submitting } = props
 
-  const form = 'signInForm';
-
   return (
     <Container className="justify-content-md-center">
 
-      <Alert variant={bootstrapVariant}>Already have an account. Sign In.</Alert>
+      <Alert variant={bootstrapVariant}>{formTitles[formName]}</Alert>
 
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          <Field name="email" component={renderTextInput} label="Email" type="email" placeholder="Email" />
+          <Field name="email"
+            label="Email"
+            type="email"
+            placeholder="Email"
+            component={renderTextInput}
+            validate={[required, emailFormat]} />
         </Form.Group>
 
         <Form.Group>
-          <Field name="password" component={renderTextInput} label="Password" type="password" placeholder="Password" />
+          <Field name="password"
+            component={renderTextInput}
+            label="Password"
+            type="password"
+            placeholder="Password" 
+            validate={[required]}/>
         </Form.Group>
 
-        <Button type="submit" variant={bootstrapVariant} disabled={pristine || submitting}>Sign In</Button>
+        <Button type="submit" variant={bootstrapVariant} disabled={pristine || submitting}>{formSubmitText[formName]}</Button>
 
       </Form>
 
 
       {/* if error variable is defined, display it */}
-      {error && <div><br/><AuthResult {...error} formName={form} submitSucceeded={false}/></div>}
+      {error && <div><br /><ErrorAlert {...error} /></div>}
     </Container>
 
   )
@@ -68,7 +78,7 @@ signInForm.propTypes = {
 }
 
 const SignInReduxForm = reduxForm({
-  form: 'signIn'
+  form: formName
 })(signInForm)
 
 export const AmplifySignIn = () => <SignInReduxForm onSubmit={signInAsync} />

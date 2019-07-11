@@ -6,9 +6,11 @@ import Container from 'react-bootstrap/Container'
 import Alert from 'react-bootstrap/Alert'
 
 import PropTypes from 'prop-types'
-import { emailFormat, required } from '../util/validations'
-import AuthResult  from '../components/AuthResult'
-import {forgotPasswordAsync} from '../util/amplifyAPI'
+import { emailFormat, required } from 'auth/amplify/validations'
+import ErrorAlert  from 'auth/components/ErrorAlert'
+import SuccessAlert  from 'auth/components/SuccessAlert'
+import { forgotPasswordAsync } from 'auth/amplify'
+import { bootstrapVariant, formTitles, renderTextInput , formSubmitText} from 'auth/util'
 
 //Amplify Functions - Route names are lowercase for each
 // signUp
@@ -20,30 +22,20 @@ import {forgotPasswordAsync} from '../util/amplifyAPI'
 // signOut
 
 
+const formName = "forgotPassword"
 
-
-//for rendering Input
-const renderTextInput = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => {
-    return (
-        <div>
-            <Form.Label>{label}</Form.Label>
-            <Form.Control type={type} placeholder={placeholder} {...input} />
-            {touched && ((error && <span className="error">{error}</span>))}
-        </div>
-    )
-}
 
 
 let forgotPasswordForm = props => {
 
-    const { error, pristine, handleSubmit, submitting , submitSucceeded,  variant} = props
+    const { error, pristine, handleSubmit, submitting, submitSucceeded} = props
 
-    const formName="forgotPasswordForm"
+    console.log(error)
 
     return (
         <Container className="justify-content-md-center">
 
-            <Alert variant={variant}>Resend Signup Code</Alert>
+            <Alert variant={bootstrapVariant}>{formTitles[formName]}</Alert>
 
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
@@ -56,17 +48,17 @@ let forgotPasswordForm = props => {
                 </Form.Group>
 
 
-                <Button variant={variant} type="submit" disabled={pristine || submitting}>Sign Up</Button>
+                <Button variant={bootstrapVariant} type="submit" disabled={pristine || submitting}>{formSubmitText[formName]}</Button>
 
             </Form>
 
 
               {/* if error variable is defined, display it */}
-              {error && <div><br/><AuthResult {...error} formName={formName}/></div>}
+              {error && <div><br/><ErrorAlert {...error}/></div>}
 
 
-{/* if submitSucceded  is defined, display Success ALert */}
-{submitSucceeded && <div><br/><AuthResult  formName={formName} submitSucceeded /></div>}
+            {/* if submitSucceded  is defined, display Success ALert */}
+            {submitSucceeded && <div><br/><SuccessAlert formName={formName} /></div>}
         </Container>
 
     )
@@ -78,6 +70,6 @@ forgotPasswordForm.propTypes = {
 
 const ForgotPasswordReduxForm = reduxForm({
     form: 'forgotPassword'
-  })(forgotPasswordForm)
-  
- export const AmplifyForgotPassword = () => <ForgotPasswordReduxForm onSubmit={forgotPasswordAsync} />
+})(forgotPasswordForm)
+
+export const AmplifyForgotPassword = () => <ForgotPasswordReduxForm onSubmit={forgotPasswordAsync} />

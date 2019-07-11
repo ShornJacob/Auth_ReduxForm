@@ -2,10 +2,18 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import {formTitles} from 'auth/util'
 
+import { signOutAsync } from 'auth/amplify'
 
-import {signOutAsync} from '../util/amplifyAPI'
-
+//Amplify Functions - Route names are lowercase for each
+// signUp
+// confirmSignUp
+// resendSignUp
+// signIn
+// forgotPassword
+// forgotPasswordSubmit
+// signOut
 
 export default function NavBar({ authenticated, authenticating, email }) {
 
@@ -16,15 +24,20 @@ export default function NavBar({ authenticated, authenticating, email }) {
 
 
     const navsWhenNotAuthenticated = (<Nav>
-        <Nav.Link href="/signin">Sign In</Nav.Link>
-        <Nav.Link href="/signup">Sign Up</Nav.Link>
+        <Nav.Link href="/signup">SignUp</Nav.Link>
+        <Nav.Link href="/signin">SignIn</Nav.Link>
+        <NavDropdown title="Users" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/confirmsignup">{formTitles['confirmSignUp']}</NavDropdown.Item>
+            <NavDropdown.Item href="/forgotpassword">{formTitles['forgotPassword']}</NavDropdown.Item>
+            <NavDropdown.Item href="/forgotpasswordSubmit">{formTitles['forgotPasswordSubmit']}</NavDropdown.Item>
+            </NavDropdown>
     </Nav>)
 
     const navsWhenAuthenticated = (
         <NavDropdown title={email} id="basic-nav-dropdown">
-            <Nav.Link to={'/signout'} onClick={ () => signOutAsync() }>Sign Out</Nav.Link>
+            <Nav.Link to={'/signout'} onClick={() => signOutAsync()}>Sign Out</Nav.Link>
         </NavDropdown>
-)
+    )
 
 
 
@@ -36,12 +49,12 @@ export default function NavBar({ authenticated, authenticating, email }) {
             <Navbar.Brand>Transparency Consulting</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-
-                {/* this nav prevents suth from appearing on right */}
+                {/* 
+                this nav prevents suth from appearing on right
                 <Nav className="mr-auto">
 
 
-                </Nav>
+                </Nav> */}
 
                 {authenticated ? navsWhenAuthenticated : navsWhenNotAuthenticated}
             </Navbar.Collapse>
