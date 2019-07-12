@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 #ignore aws constant file
-/src/auth/util/aws-exports.js
+/src/auth/amplify/aws-exports.js
 
 
 
