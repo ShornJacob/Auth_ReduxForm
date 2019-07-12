@@ -14,6 +14,7 @@
 
 3)npm install 
 @aws-amplify/auth
+bootstrap
 react-bootstrap
 react-redux
 react-router-dom
