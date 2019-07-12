@@ -26,6 +26,7 @@ import { Route } from 'react-router-dom'
 
 //Should not contain BrowserRouter ,so to be tested in Memory Router
 
+//Dummy landing page for root
 const Landing = () => <div>Landing</div>
 
 export default () => {

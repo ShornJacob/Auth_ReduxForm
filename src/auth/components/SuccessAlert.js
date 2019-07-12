@@ -15,7 +15,7 @@ import { ConfirmSignUp, SignIn, ForgotPasswordSubmit } from 'auth/Links'
 
 export default ({ formName }) => {
 
-    console.log(formName)
+    //console.log(formName)
 
 
     switch (formName) {

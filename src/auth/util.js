@@ -17,7 +17,7 @@ import Form from 'react-bootstrap/Form'
 export const formTitles =  {
     signIn : 'Already have an account. Sign In',
     signUp : "Sign up for a new account.",
-    confirmSignUp : "Confirm user.",
+    confirmSignUp : "Confirm new user.",
     resendSignUp : "Resend code for sign up.",
     forgotPassword : "Request code to reset password.",
     forgotPasswordSubmit : "Reset password using code."
