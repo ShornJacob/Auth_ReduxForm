@@ -19,3 +19,6 @@ Create React App 3.0.0
 
 branch11
 gitignore for aws-exports
+
+branch-12
+new way of Auth

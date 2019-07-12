@@ -1,6 +1,6 @@
 import React from 'react'
 import Alert from 'react-bootstrap/Alert'
-import { SignUp, ConfirmSignUp, ForgotPassword, SignIn, ForgotPasswordSubmit } from 'auth/Links'
+import { ConfirmSignUp, SignIn, ForgotPasswordSubmit } from 'auth/Links'
 
 
 //Amplify Functions - Route names are lowercase for each
@@ -13,27 +13,30 @@ import { SignUp, ConfirmSignUp, ForgotPassword, SignIn, ForgotPasswordSubmit } f
 // signOut
 
 
-
-const messages = {
-    signUp: "using code sent to Email.",
-    confirmSignUp: "Email has been Confirmed.",
-    forgotPasswordSubmit: "Password has been successfully reset.",
-}
 export default ({ formName }) => {
 
-    let successAlert
     console.log(formName)
 
 
     switch (formName) {
         case "signUp":
-            return <Alert variant="info"><ConfirmSignUp text={"Confirm user"}/>&nbsp;{messages.signUp}&nbsp;</Alert>
+        case "resendSignUp":
+            //Success. Confirm user using the code send to email.
+            return <Alert variant="info">Success. {' '}<ConfirmSignUp />{' using the code send to email.'}</Alert>
+
         case "confirmSignUp":
-            return <Alert variant="info">{messages.confirmSignUp}{" "}<SignIn /></Alert>
+            //Success. Email has been confirmed. Sign in
+            return <Alert variant="info">Success. Email has been confirmed.{' '}<SignIn /></Alert>
         case "forgotPassword":
-            return <Alert variant="info">Success. {" "}<ForgotPasswordSubmit>Reset Password</ForgotPasswordSubmit>{" "}using code.</Alert>
+            //Success. Reset Password using code send to email.
+            return <Alert variant="info">Success. {" "}<ForgotPasswordSubmit>Reset Password</ForgotPasswordSubmit>{" "}using code send to email.</Alert>
         case "forgotPasswordSubmit":
-            return <Alert variant="info">{messages.forgotPasswordSubmit}&nbsp;<SignIn/></Alert>
+            //Password has been successfully reset. Sign in.
+            return <Alert variant="info">Success. Password has been successfully reset.<SignIn />{"."}</Alert>
+
+        //for warning . expected  adefault cause
+        default :
+            return <Alert variant="error">Unkowm form submitted<SignIn />{"."}</Alert>
     }
 
 }

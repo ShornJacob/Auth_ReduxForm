@@ -1,7 +1,7 @@
 import React from "react";
 import ErrorAlert from 'auth/components/ErrorAlert'
 import TestRenderer from 'react-test-renderer'
-import {SignUp, ConfirmSignUp, ForgotPassword} from 'auth/Links'
+import {SignUp, ConfirmSignUp, ForgotPassword, ResendSignUp} from 'auth/Links'
 
 //https://reactjs.org/docs/test-renderer.html
 // React renderer that can be used to render React components to pure JavaScript objects, without depending on the DOM or a native mobile environment.
@@ -19,11 +19,12 @@ test('Error Alert for UserNotConfirmedException has an instance of  ConfirmPassw
 })
 
 
-//test for UserNotConfirmedException
-test('Error Alert for UserNotConfirmedException has an instance of  ConfirmPassword', () => {
+//test for ExpiredCodeException
+test('Error Alert for ExpiredCodeException has an instance of  ResendSignUp and ForgotPassword ', () => {
     const testRenderer = TestRenderer.create(<ErrorAlert code={'ExpiredCodeException'} />)
     const testInstance = testRenderer.root
-    expect(testInstance.findByType(ConfirmSignUp))
+    expect(testInstance.findByType(ResendSignUp))
+    expect(testInstance.findByType(ForgotPassword))
 })
 
 
