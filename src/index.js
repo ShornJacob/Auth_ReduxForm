@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import store from './reducers';
 import { BrowserRouter } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css';
-import './index.css'
 import { currentAuthenticatedUserAsync } from 'auth/amplify'
 //Provider store to the Routed App
 
