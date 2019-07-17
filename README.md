@@ -28,7 +28,7 @@ react-test-renderer
 enzyme
 redux-mock-store
 enzyme-adapter-react-16
-
+npm install --save-dev react-test-renderer enzyme redux-mock-store enzyme-adapter-react-16
 
 
 // setup file for enzyme

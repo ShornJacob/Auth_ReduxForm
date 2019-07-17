@@ -5,8 +5,6 @@
   "dependencies": {
     "@aws-amplify/auth": "^1.2.18",
     "bootstrap": "^4.3.1",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.14.0",
     "react": "^16.8.4",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.8.4",
@@ -34,6 +32,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "react-test-renderer": "^16.8.6",
     "redux-mock-store": "^1.5.3"
   }
 }
